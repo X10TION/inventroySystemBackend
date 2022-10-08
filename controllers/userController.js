@@ -1,4 +1,6 @@
-const registerUser = async(req,res) => {
+const asyncHandler = require('../middleware/asyncHandler')
+
+const registerUser = asyncHandler(async(req,res) => {
     const {email} = req.body
     if(!email){
         res.status(400)
@@ -6,7 +8,7 @@ const registerUser = async(req,res) => {
     }
     
     res.send('register user')
-}
+})
 
 
 
