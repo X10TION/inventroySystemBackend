@@ -94,7 +94,29 @@ const loginUser = asyncHandler(async(req,res) => {
     }
 })
 
+// logout User from the system
+const logoutUser = asyncHandler(async(req,res) => {
+    // remove cookie token
+     // send http cookie only
+     res.cookie("token","",{
+        path:"/",
+        httpOnly: true,
+        expires: new Date(0), // token expired
+        sameSite: "none",
+        secure: true
+    })
+    return res.status(200).json({
+        massege: "Successfully loged out"
+    })
+})
+
+// get user details
+const getUser = asyncHandler(async(req,res)=>{
+    res.send("get all user info")
+})
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser,
+    getUser
 }
